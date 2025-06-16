@@ -1,0 +1,104 @@
+<app-header></app-header>
+
+<div class="container">
+    <div class="row p-5 bg-success">
+        <div class="col-md-2"></div>
+        <div class="col-md-4 text-white">
+            <h1>The Easiest Way <br> To Make Your <br> Favourite Meal</h1>
+        <p class="mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi voluptates unde nulla placeat incidunt sequi! Minima excepturi quia aliquam assumenda alias! Ipsum numquam necessitatibus voluptate quis quaerat et eveniet. Maxime.</p>
+        <button class="btn btn-warning mt-5">Explore Recipes</button>
+    </div>
+        <div class="col-md-6">
+            <img id="LandingImg" src="imageplate.png" alt="no image">
+        </div>
+    </div>
+
+    <!-- popular recipe -->
+     <div class="row p-5">
+       <div class="d-flex justify-content-between align-items-start flex-wrap">
+  <div>
+    <h1 >Popular Recipe of the Week</h1>
+    <h6>Our Most Popular Recipes of the week</h6>
+  </div>
+  <div class="mt-5">
+    <a routerLink="/all-recipes"><h6>View All</h6></a>
+  </div>
+</div>
+       
+        <div class=" row d-flex justify-content-center align-items-center">
+          @if(HomeRecipe.length>0){
+              
+            @for (item of HomeRecipe; track $index) {
+              <div class="col-md-4 card" style="width: 18rem; margin: 45px;">
+  <img [src]="item.image" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{item.name}}</h5>
+  </div>
+</div>
+            }
+          }
+          @else {
+            <h2>No items to show ...</h2>
+          }
+
+        </div>
+     </div>
+
+     <!-- image banner1 -->
+      <div id="imagebanner1" class="row mb-5">
+        <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">50+ Recipes That Very Quick And Fast</h5>
+    <p class="card-text">Find perfect food ideas to start your day with the quick and easiest way.</p>
+  </div>
+</div>
+
+      </div>
+      <!-- download app section -->
+       <div class="row bg-success">
+        <div class="col-md-6 p-5">
+            <img src="imagedesktop.png" alt="no image" style="width: 100%;">
+        </div>
+        <div class="col-md-6 ">
+            <h2 class="text-center mt-5 text-white">Download App</h2>
+            <p class="text-white text-center mt-4">Download the App from the Appstore or <br>
+            Google Play for better Experience</p> <br>
+            <div class="d-flex  justify-content-center align-items-center">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png" alt="no image" style="width: 100px; height: 75px; margin: 15px;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Download_on_the_App_Store_RGB_blk.svg/1280px-Download_on_the_App_Store_RGB_blk.svg.png" alt="no image" style="width: 100px; height: 75px;">
+            </div>
+        </div>
+
+       </div>
+
+       <!-- testimonials -->
+
+       <div class="row">
+    <h1 class="text-center m-5">Clients Testimonial</h1>
+    <div class="d-flex justify-content-center align-items-center flex-wrap w-100">
+      
+      <div class="card m-3" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Peter</h5>
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, doloribus.</p>
+        </div>
+      </div>
+
+      <div class="card m-3" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Sara</h5>
+          <p class="card-text">Amazing recipes and great user experience. Highly recommend the app!</p>
+        </div>
+      </div>
+
+      <div class="card m-3" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">John</h5>
+          <p class="card-text">A perfect way to discover and try new meals easily. Loved it! Lorem, ipsum dolor.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+       
+</div>

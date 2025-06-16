@@ -1,0 +1,136 @@
+<nav class="navbar navbar-expand-lg bg-success mt-5 container">
+  <div class="container-fluid">
+    <a routerLink="/" class="navbar-brand text-white"> <i class="fa-solid fa-kitchen-set me-2"></i>Cookpedia</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a routerLink="/" class="nav-link text-white " aria-current="page">Home</a>
+        </li>
+         <li class="nav-item">
+          <a routerLink="/all-recipes" class="nav-link text-white" aria-current="page" >Recipe</a>
+        </li>
+         <li class="nav-item">
+          <a routerLink="/about" class="nav-link text-white" aria-current="page">About</a>
+        </li>
+         <li class="nav-item">
+          <a routerLink="/contact" class="nav-link text-white" aria-current="page" >Contact</a>
+        </li>
+      
+      </ul>
+      
+      <div class="dropdown ms-auto">
+  <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+     <i class="fa-solid fa-user"></i>
+     @if(isLoggin){
+      <span>Hi {{username}}</span>
+     }
+  </button>
+  <ul class="dropdown-menu">
+    @if(!isLoggin){
+      <li><a routerLink="/login" class="dropdown-item" >Login</a></li>
+    <li><a routerLink="/register"  class="dropdown-item" >Register</a></li>
+    }
+    
+    @if(isLoggin){
+      <li><a routerLink="/profile" class="dropdown-item" >Profile</a></li>
+            <li><a routerLink="/saved-recipes" class="dropdown-item" >Saved Recipes</a></li>
+
+    <li><a (click)="logout()"  class="dropdown-item" >Logout</a></li>
+    }
+  </ul>
+</div>
+    </div>
+  </div>
+</nav>
+
+<!-- <nav class="navbar navbar-expand-lg bg-body-success mt-5 container">
+  <div class="container-fluid">
+    <a routerLink="/" class="navbar-brand text-white" ><i class="fa-solid fa-kitchen-set me-2"></i>Cookpedia</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" >Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" >Recipe</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" >About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" >Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+
+      <div class="dropdown">
+  <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="fa-solid fa-user me-2"></i>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a routerLink="/login" class="dropdown-item" >Login</a></li>
+    <li><a routerLink="/register" class="dropdown-item" >Register</a></li>
+  </ul>
+</div>
+    </div>
+  </div>
+</nav> -->
+
+
+<!-- <nav class="navbar navbar-expand-lg bg-body-sucess mt-5">
+  <div class="container-fluid">
+        <a routerLink="/" class="navbar-brand text-white" ><i class="fa-solid fa-kitchen-set me-2"></i>Cookpedia</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" >Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" >Recipe</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" >Contact</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            About
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Link</a>
+        </li>
+      </ul>
+       <div class="dropdown">
+  <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="fa-solid fa-user me-2"></i>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a routerLink="/login" class="dropdown-item" >Login</a></li>
+    <li><a routerLink="/register" class="dropdown-item" >Register</a></li>
+  </ul>
+</div>
+    </div>
+  </div>
+</nav> -->

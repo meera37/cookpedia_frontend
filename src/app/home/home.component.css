@@ -1,0 +1,39 @@
+#LandingImg:hover{
+    animation: rot 2s infinite;
+transition: 0.5s;
+}
+
+@keyframes rot {
+
+    0% { transform: rotate(0deg); }
+    5% { transform: rotate(18deg); }
+    10% { transform: rotate(36deg); }
+    15% { transform: rotate(54deg); }
+    20% { transform: rotate(72deg); }
+    25% { transform: rotate(90deg); }
+    30% { transform: rotate(108deg); }
+    35% { transform: rotate(126deg); }
+    40% { transform: rotate(144deg); }
+    45% { transform: rotate(162deg); }
+    50% { transform: rotate(180deg); }
+    55% { transform: rotate(198deg); }
+    60% { transform: rotate(216deg); }
+    65% { transform: rotate(234deg); }
+    70% { transform: rotate(252deg); }
+    75% { transform: rotate(270deg); }
+    80% { transform: rotate(288deg); }
+    85% { transform: rotate(306deg); }
+    90% { transform: rotate(324deg); }
+    95% { transform: rotate(342deg); }
+    100% { transform: rotate(360deg); }
+
+
+}
+
+#imagebanner1{
+background-image: url('https://images.deccanherald.com/deccanherald%2F2024-02%2F8dad2cfe-8b94-4a9f-a2eb-0724bd4b3319%2FiStock_1334115358.jpg?auto=format%2Ccompress&fmt=webp&fit=max&format=webp&q=70&w=400&dpr=2');
+background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 60px 20px; 
+}

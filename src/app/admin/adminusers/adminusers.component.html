@@ -11,7 +11,8 @@
             <h3 class="text-center my-3">User List</h3>
             
             <div class="table-responsive px-4 my-5">
-                <table class="table table-bordered shadow">
+               @if(allusers.length>0){
+                 <table class="table table-bordered shadow">
                     <thead>
                         <tr>
                             <th class="bg-success text-light">Sl</th>
@@ -21,16 +22,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
+                       @for (item of allusers; track $index) {
+                         <tr>
+                            <td>{{$index +1}}</td>
+                            <td>{{item.username}}</td>
+                            <td>{{item.email}}</td>
                             
                         </tr>
+                       }
                     </tbody>
                 </table>
-
+               }
+               @else {
                 <h3 class="text-danger">No Users...</h3>
+
+               }
+
             </div>
         </div>
     </div>

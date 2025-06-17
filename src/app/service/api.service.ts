@@ -81,4 +81,14 @@ export class ApiService {
   updateProfileApi(reqBody:any){
     return this.http.put(`${this.serverurl}/profile-update`,reqBody,this.appendToken())
   }
+
+  //api to get all users
+  getAllUsersApi(){
+    return this.http.get(`${this.serverurl}/all-users`)
+  }
+
+   //api to get all downloads
+  getAllDownloadApi(){
+    return this.http.get(`${this.serverurl}/all-downloads`)
+  }
 }

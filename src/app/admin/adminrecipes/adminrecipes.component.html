@@ -10,10 +10,12 @@
             </div>
             <h3 class="text-center my-3">Recipe List</h3>
             <div class="d-flex justify-content-between px-4 mt-4">
-                <button class="btn btn-primary">Add Recipe <i class="fa-solid fa-plus ms-2"></i></button>
-                <input type="text" placeholder="name" class="form-control w-25">
+                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">Add
+                    Recipe <i class="fa-solid fa-plus ms-2"></i></button>
+                <input [(ngModel)]="searchKey" type="text" placeholder="name" class="form-control w-25">
             </div>
             <div class="table-responsive px-4 my-5">
+                @if(allRecipes.length>0){
                 <table class="table table-bordered shadow">
                     <thead>
                         <tr>
@@ -25,21 +27,117 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @for (item of allRecipes | search:searchKey; track $index) {
                         <tr>
-                            <td>1</td>
-                            <td>dummy</td>
-                            <td><img src="" alt="no image"></td>
-                            <td>dummy</td>
+                            <td>{{$index+1}}</td>
+                            <td>{{item.name}}</td>
+                            <td class="text-center"><img [src]="item.image" alt="no image"
+                                    style="width: 80px; height: auto;"></td>
+                            <td>{{item.cuisine}}</td>
                             <td>
                                 <button class="btn btn-outline-primary"><i class="fa-solid fa-pen-square"></i></button>
-                                <button class="btn btn-outline-danger ms-4"><i class="fa-solid fa-trash-can"></i></button>
+                                <button class="btn btn-outline-danger ms-4"><i
+                                        class="fa-solid fa-trash-can"></i></button>
 
                             </td>
                         </tr>
+                        }
+
                     </tbody>
                 </table>
-
+                }
+                @else{
                 <h3 class="text-danger">No Recipes...</h3>
+
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h1 class="modal-title fs-5 text-light" id="exampleModalLabel">Recipe Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <input type="text" placeholder="Name of the Recipe" class="form-control ">
+                </div>
+                <div class="mb-3 d-flex">
+                    <input type="text" placeholder="Ingredients" class="form-control rounded-0">
+                    <button class="btn btn-success rounded-0">Add</button>
+
+
+                </div>
+                <div class="mb-3 d-flex">
+                    <input type="text" placeholder="Instructions" class="form-control rounded-0">
+                    <button class="btn btn-success rounded-0">Add</button>
+
+
+                </div>
+                <div class="mb-3">
+                    <input type="text" placeholder="Preparation Time" class="form-control">
+
+                </div>
+                <div class="mb-3">
+                    <input type="text" placeholder="Cooking Time" class="form-control">
+
+                </div>
+                <div class="mb-3">
+                    <input type="text" placeholder="Servings" class="form-control">
+
+                </div>
+                <div class="mb-3">
+                    <select class="form-select">
+                        <option value="0" disabled [defaultSelected]="true">Mode of Cooking</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Difficult">Difficult</option>
+
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <select class="form-select">
+                        <option value="0" disabled [defaultSelected]="true">Cuisine Type</option>
+                        @for (item of cuisineType; track $index) {
+                        <option value="item">{{item}}</option>
+                        }
+                    </select>
+
+                </div>
+                <div class="mb-3">
+                    <input type="text" placeholder="Calories" class="form-control">
+
+                </div>
+                <div class="mb-3">
+                    <input type="text" placeholder="Ratings" class="form-control">
+
+                </div>
+                <div class="mb-3">
+                    <select class="form-select">
+                        <option value="0" disabled [defaultSelected]="true">Meal Type</option>
+                        @for (item of mealType; track $index) {
+                        <option value="item">{{item}}</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="recipeImg">Upload Image</label>
+                    <input id="recipeImg" type="file" class="form-control">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Reset</button>
+                <button type="button" class="btn btn-success">Save</button>
             </div>
         </div>
     </div>

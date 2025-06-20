@@ -64,17 +64,17 @@
         </div>
         <div class="col-1"></div>
         <div class="col-4">
-            <form class="p-5 border rounded shadow mt-5">
+            <form [formGroup]="testimonialForm" (ngSubmit)="submitform()" class="p-5 border rounded shadow mt-5">
                 <h2>Client Testimony</h2>
                 <div class="my-3">
-                    <input type="text" placeholder="Name" class="form-control">
+                    <input name="name" formControlName="name" type="text" placeholder="Name" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <input type="text" placeholder="Email" class="form-control">
+                    <input name="email" formControlName="email" type="text" placeholder="Email" class="form-control">
                 </div>
 
                 <div class="mb-3">
-                    <textarea placeholder="Message" class="form-control"></textarea>
+                    <textarea name="message" formControlName="message" placeholder="Message" class="form-control"></textarea>
                 </div>
                 <p class="my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. nisi doloremque est aperiam ipsa accusantium, quae earum qui. Tempore!</p>
                 <div class="mb-3 justify-content-end d-flex">

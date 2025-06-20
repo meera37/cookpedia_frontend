@@ -91,4 +91,19 @@ export class ApiService {
   getAllDownloadApi(){
     return this.http.get(`${this.serverurl}/all-downloads`)
   }
+
+  //api to add new recipe
+  addNewRecipeApi(reqBody:any){
+return this.http.post(`${this.serverurl}/add-recipe`,reqBody)
+  }
+
+  //api to delete a recipe
+  deleteARecipeApi(id:any){
+return this.http.delete(`${this.serverurl}/delete-recipe/${id}`)
+  }
+
+  //api to add testimonial
+  addTestimonialApi(reqBody:any){
+  return this.http.post(`${this.serverurl}/add-testimonial`,reqBody)
+  }
 }

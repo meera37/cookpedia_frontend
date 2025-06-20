@@ -6,6 +6,7 @@ import { IDropdownSettings, NgMultiSelectDropDownModule } from 'ng-multiselect-d
 import { ApiService } from '../../service/api.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SearchPipe } from '../../pipes/search.pipe';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-adminrecipes',
@@ -72,9 +73,78 @@ this.dropdownSettings = {
 
   onItemSelect(item: any) {
     console.log(item);
+    this.recipeForm.value.mealType.push(item.item_text)
   }
   onSelectAll(items: any) {
     console.log(items);
+    items.forEach((item:any)=>{
+          this.recipeForm.value.mealType.push(item.item_text)
+
+    })
+  }
+
+  onDeleteItem(items:any){
+    console.log(items);
+  this.recipeForm.value.mealType = this.recipeForm.value.mealType.filter((meal:any)=> meal != items.item_text)  
+  }
+
+  onDeleteItemAll(){
+    this.recipeForm.value.mealType = []
+  }
+
+  addIngredient(data:any){
+console.log(data.value);
+this.recipeForm.value.ingredients.push(data.value)
+data.value = ""
+  }
+
+  addInstruction(data:any){
+console.log(data.value);
+this.recipeForm.value.instructions.push(data.value)
+data.value = ""
+  }
+
+   getFile(event: any) {
+    console.log(event.target.files[0]);
+    //FileReader class - to convert files into url
+    //create an instance for the class
+    let fr = new FileReader()
+
+    fr.readAsDataURL(event.target.files[0]) //to read the file and convert into url
+
+    fr.onload = (event: any) => {  // to get the url
+     // console.log(event.target.result);
+      this.recipeForm.value.image = event.target.result
+      
+
+    }
+  }
+
+  save(){
+    console.log('inside save function');
+    console.log(this.recipeForm.value);
+
+    const {recipeName,preTime, calories, cookingTime, rating, modeofCooking, mealType, cuisineType, ingredients, instructions, image}= this.recipeForm.value
+
+    if(!recipeName || !preTime || !calories || !cookingTime || !rating || !modeofCooking || mealType.length==0 || !cuisineType || ingredients.length == 0 || instructions.length == 0 ||!image){
+      Swal.fire({
+        title:'Oops',
+        text:'Please fill the form completely',
+        icon:'info'
+      })
+    }
+    else{
+this.api.addNewRecipeApi(this.recipeForm.value).subscribe({
+  next:(res:any)=>{
+    console.log(res);
+    
+  },
+  error:(err:any)=>{
+    console.log(err);
+    
+  }
+})
+    }
   }
 
   getAllRecipes(){
@@ -99,6 +169,19 @@ console.log(this.cuisineType);
         console.log(err);
         
       }
+    })
+  }
+
+  deleteRecipe(id:any){
+    this.api.deleteARecipeApi(id).subscribe({
+        next:(res:any)=>{
+    console.log(res);
+    this.getAllRecipes()
+  },
+  error:(err:any)=>{
+    console.log(err);
+    
+  }
     })
   }
 }

@@ -36,7 +36,7 @@
                             <td>{{item.cuisine}}</td>
                             <td>
                                 <button class="btn btn-outline-primary"><i class="fa-solid fa-pen-square"></i></button>
-                                <button class="btn btn-outline-danger ms-4"><i
+                                <button type="button" (click)="deleteRecipe(item._id)" class="btn btn-outline-danger ms-4"><i
                                         class="fa-solid fa-trash-can"></i></button>
 
                             </td>
@@ -152,97 +152,102 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6">
- <div class="mb-3">
-                    <input type="text" placeholder="Name of the Recipe" class="form-control ">
-                </div>
-                 <div class="mb-3">
-                    <input type="text" placeholder="Preparation Time" class="form-control">
-
-                </div>
-                 <div class="mb-3">
-                    <input type="text" placeholder="Calories" class="form-control">
-
-                </div>
-
+               <form [formGroup]="recipeForm">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <input type="text" placeholder="Name of the Recipe" class="form-control "
+                                     name="recipeName"   formControlName="recipeName">
+                                    <!-- @if (recipeForm.get('recipeName')?.touched &&
+                                    recipeForm.get('recipeName')?.hasError('required')) {
+                                    <p class="text-danger">* Recipe name is required</p>
+                                    } -->
+    
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" placeholder="Preparation Time" class="form-control" name="preTime"   formControlName="preTime">
+    
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" placeholder="Calories" class="form-control" name="calories"   formControlName="calories">
+    
+                                </div>
+    
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <input type="text" placeholder="Servings" class="form-control"
+                                    name="serving"   formControlName="serving">
+    
+                                </div>
+    
+                                <div class="mb-3">
+                                    <input type="text" placeholder="Cooking Time" class="form-control" name="cookingTime"   formControlName="cookingTime">
+    
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" placeholder="Ratings" class="form-control" name="rating"   formControlName="rating">
+    
+                                </div>
+                            </div>
+    
                         </div>
-                        <div class="col-md-6">
+                        <div class="row">
                             <div class="mb-3">
-                    <input type="text" placeholder="Servings" class="form-control">
-
-                </div>
-               
-                <div class="mb-3">
-                    <input type="text" placeholder="Cooking Time" class="form-control">
-
-                </div>
-                <div class="mb-3">
-                    <input type="text" placeholder="Ratings" class="form-control">
-
-                </div>
+                                <select class="form-select" name="modeofCooking"   formControlName="modeofCooking">
+                                    <option value="0" disabled [defaultSelected]="true">Mode of Cooking</option>
+                                    <option value="Easy">Easy</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Difficult">Difficult</option>
+    
+                                </select>
+                            </div>
+    
+                            <div class="mb-3">
+                                <ng-multiselect-dropdown [placeholder]="'------Select------'" [settings]="dropdownSettings"
+                                    [data]="dropdownList" (onSelect)="onItemSelect($event)"
+                                    (onSelectAll)="onSelectAll($event)"
+   (onDeSelect)="onDeleteItem($event)"   (onDeSelectAll)="onDeleteItemAll()"                              >
+                                </ng-multiselect-dropdown>
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-select" name="cuisineType"   formControlName="cuisineType">
+                                    <option value="0" disabled [defaultSelected]="true">Cuisine Type</option>
+                                    @for (item of cuisineType; track $index) {
+                                    <option [value]="item">{{item}}</option>
+                                    }
+                                </select>
+    
+                            </div>
+                            <div class="mb-3 d-flex">
+                                <input #ingre type="text" placeholder="Ingredients" class="form-control rounded-0">
+                                <button (click)="addIngredient(ingre)" class="btn btn-success rounded-0">Add</button>
+    
+    
+                            </div>
+                            <div class="mb-3 d-flex">
+                                <input #instr type="text" placeholder="Instructions" class="form-control rounded-0">
+                                <button (click)="addInstruction(instr)" class="btn btn-success rounded-0">Add</button>
+    
+    
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipeImg">Upload Image</label>
+                                <input (change)="getFile($event)" id="recipeImg" type="file" class="form-control">
+    
+                            </div>
+    
+    
                         </div>
-
                     </div>
-                    <div class="row">
-                     <div class="mb-3">
-                    <select class="form-select">
-                        <option value="0" disabled [defaultSelected]="true">Mode of Cooking</option>
-                        <option value="Easy">Easy</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Difficult">Difficult</option>
-
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <ng-multiselect-dropdown
-  [placeholder]="'------Select------'"
-  [settings]="dropdownSettings"
-  [data]="dropdownList"
-  [(ngModel)]="selectedItems"
-  (onSelect)="onItemSelect($event)"
-  (onSelectAll)="onSelectAll($event)"
->
-</ng-multiselect-dropdown>
-                </div>
-                <div class="mb-3">
-                    <select class="form-select">
-                        <option value="0" disabled [defaultSelected]="true">Cuisine Type</option>
-                        @for (item of cuisineType; track $index) {
-                        <option value="item">{{item}}</option>
-                        }
-                    </select>
-
-                </div>
-                <div class="mb-3 d-flex">
-                    <input type="text" placeholder="Ingredients" class="form-control rounded-0">
-                    <button class="btn btn-success rounded-0">Add</button>
+               </form>
 
 
-                </div>
-                <div class="mb-3 d-flex">
-                    <input type="text" placeholder="Instructions" class="form-control rounded-0">
-                    <button class="btn btn-success rounded-0">Add</button>
 
 
-                </div>
-                 <div class="mb-3">
-                    <label for="recipeImg">Upload Image</label>
-                    <input id="recipeImg" type="file" class="form-control">
-
-                </div>
 
 
-                    </div>
-                </div>
-               
-                
-               
-                
-                
-                
                 <!-- <div class="mb-3">
                     <select class="form-select">
                         <option value="0" disabled [defaultSelected]="true">Meal Type</option>
@@ -251,11 +256,11 @@
                         }
                     </select>
                 </div> -->
-               
+
             </div>
             <div class="modal-footer" style="background-color: rgb(155, 161, 155);">
-                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Reset</button>
-                <button type="button" class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" (click)="save()">Save</button>
             </div>
         </div>
     </div>

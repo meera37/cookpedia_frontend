@@ -6,10 +6,12 @@
         <div class="col-md-4 text-white">
             <h1>The Easiest Way <br> To Make Your <br> Favourite Meal</h1>
         <p class="mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi voluptates unde nulla placeat incidunt sequi! Minima excepturi quia aliquam assumenda alias! Ipsum numquam necessitatibus voluptate quis quaerat et eveniet. Maxime.</p>
-        <button class="btn btn-warning mt-5">Explore Recipes</button>
-    </div>
+<a routerLink="/all-recipes">
+          <button class="btn btn-warning mt-5">Explore Recipes</button>
+  
+</a>    </div>
         <div class="col-md-6">
-            <img id="LandingImg" src="imageplate.png" alt="no image">
+            <img id="LandingImg" src="imageplate.png" alt="no image" style="width: 100%;">
         </div>
     </div>
 
@@ -29,7 +31,7 @@
           @if(HomeRecipe.length>0){
               
             @for (item of HomeRecipe; track $index) {
-              <div class="col-md-4 card" style="width: 18rem; margin: 45px;">
+              <div class="col-md-4 card" style="width: 18rem; margin: 15px;">
   <img [src]="item.image" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">{{item.name}}</h5>

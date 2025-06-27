@@ -106,4 +106,15 @@ return this.http.delete(`${this.serverurl}/delete-recipe/${id}`)
   addTestimonialApi(reqBody:any){
   return this.http.post(`${this.serverurl}/add-testimonial`,reqBody)
   }
+
+  //api to get all testimonials
+  getAllTestimonialsApi(){
+return this.http.get(`${this.serverurl}/get-all-testimonials`)
+}
+//api to update the testimonialstatus
+updateTestimonialStatusApi(id:any,reqBody:any){
+  return this.http.put(`${this.serverurl}/update-testimonial/${id}`,reqBody)
+}
+
+
 }

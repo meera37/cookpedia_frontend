@@ -26,8 +26,7 @@ export class ContactComponent {
 
 submitform(){
   console.log(this.testimonialForm.value);
-  
-if(this.testimonialForm.value.invalid){
+if(this.testimonialForm.invalid){
   Swal.fire({
 title:'Oops',
 text:'Please fill the form properly',

@@ -11,6 +11,7 @@
             <h3 class="text-center my-3">All Testimonial Requests</h3>
 
             <div class="table-responsive px-4 my-5">
+                @if(allTestimonial.length>0){
                 <table class="table table-bordered shadow">
                     <thead>
                         <tr>
@@ -18,27 +19,46 @@
                             <th class="bg-success text-light">User Name</th>
                             <th class="bg-success text-light">User Email</th>
                             <th class="bg-success text-light"> Message</th>
-                                                        <th class="bg-success text-light"> Status</th>
+                            <th class="bg-success text-light"> Status</th>
 
 
                         </tr>
                     </thead>
                     <tbody>
+                        @for (item of allTestimonial; track $index) {
                         <tr>
-                            <td>1</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-<td>dummy</td>
-<td>
-    <button class="btn btn-success">Approve</button>
-        <button class="btn btn-danger">Rejected</button>
+                            <td>{{$index + 1}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.email}}</td>
+                            <td>{{item.message}}</td>
+                            <td>
+                                @if(item.status == 'pending'){
+                                <button type="button" (click)="statusChange(item._id,'approved')" class="btn btn-success">Approve</button>
+                                <button type="button" (click)="statusChange(item._id,'rejected')"  class="btn btn-danger">Reject</button>
+                                }
+                                @else if(item.status == 'rejected'){
+                                <h5 class="text-danger">Rejected</h5>
+                                }
+                                @else if(item.status == 'approved'){
+                                <h5 class="text-success">Approved</h5>
+                                }
+                                @else {
+                                <h5>Loading...</h5>
+                                }
 
-</td>
+
+                            </td>
                         </tr>
+                        }
+
                     </tbody>
                 </table>
-
+                }
+                @else {
                 <h3 class="text-danger">No Requests...</h3>
+
+                }
+
             </div>
         </div>
     </div>
